@@ -3,7 +3,7 @@ import axios from 'axios';
 import {DataGrid} from '@mui/x-data-grid';
 import {CSVLink} from "react-csv";
 import {API_URL, COLUMNS, ERROR_FETCHING_TABLE_MSG} from '../constants';
-import {Row, Spinner, Col, ButtonGroup, Button} from "react-bootstrap";
+import {Row, Spinner, Button} from "react-bootstrap";
 
 const DataPage = () => {
     let counter = 1;
