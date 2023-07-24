@@ -9,7 +9,6 @@
 ![REGISTRATION](assets/images/registration.png)
 ![DATA](assets/images/data.png)
 
-
 ## About the project
 
 The VaxApp is a web application developed to help undeveloped countries collect data from citizens in order to
@@ -24,6 +23,7 @@ Database is developed using PostgreSQL.
 - [Installation](#installation)
 - [Run the project](#run-the-project)
 - [Available Scripts](#available-scripts)
+- [How we did the project](#how-we-did-the-project)
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
@@ -119,6 +119,10 @@ point to the copied scripts so you can tweak them. At this point you're on your 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
 shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't
 customize it when you are ready for it.
+
+## How we did the project
+
+please check the  [HELP.md](HELP.md)
 
 ## Learn More
 
