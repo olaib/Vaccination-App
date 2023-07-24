@@ -45,7 +45,6 @@ const RegistrationPage = () => {
         let {name, value} = event.target;
         if (name === 'dateOfBirth') {
             value = new Date(value).toISOString().split('T')[0];
-            console.log(value)
         }
         updateFormData({
             [name]: value,
