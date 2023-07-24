@@ -4,10 +4,12 @@ import {DataGrid} from '@mui/x-data-grid';
 import {CSVLink} from "react-csv";
 import {API_URL, COLUMNS, ERROR_FETCHING_TABLE_MSG} from '../constants';
 import {Row, Spinner, Button} from "react-bootstrap";
+import SearchForm from "../SearchForm";
 
 const DataPage = () => {
     let counter = 1;
     const [data, setData] = useState({});
+    const [filteredData, setFilteredData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
 
@@ -22,11 +24,38 @@ const DataPage = () => {
         }
         setIsLoading(false);
     };
+
     useEffect(() => {
         fetchData();
     }, []);
+
     const getRowId = (row) => {
         return counter++
+    };
+
+    const onSearch = ({ startDate, endDate, country }) => {
+        if (!startDate && !endDate && !country) return setFilteredData({});
+        let filteredByDate = Object.values(data);
+
+        if (startDate && endDate) {
+            // Filter by date range
+            const startDateObj = new Date(startDate);
+            const endDateObj = new Date(endDate);
+
+            filteredByDate = filteredByDate.filter((citizen) => {
+                const dob = new Date(citizen.dateOfBirth);
+                return dob >= startDateObj && dob <= endDateObj;
+            });
+        }
+
+        // Filter by city
+        const filteredByCity = filteredByDate.filter((citizen) => {
+            return country
+                ? citizen.country.toLowerCase().includes(country.toLowerCase())
+                : true;
+        });
+
+        setFilteredData(filteredByCity);
     };
 
     return (
@@ -54,20 +83,24 @@ const DataPage = () => {
                             </Spinner>
                         </div>
                     ) : (
-                        <div className="mx-auto">
-                            <div>
-                                <DataGrid
-                                    rows={Object.values(data)}
-                                    columns={COLUMNS}
-                                    disableSelectionOnClick
-                                    getRowId={getRowId}
-                                    pageSize={10}
-                                />
+                        <>
+                            <SearchForm onSearch={onSearch}/>
+                            <div className="mx-auto">
+                                <div>
+                                    <DataGrid
+                                        rows={filteredData.length > 0 ? filteredData : Object.values(data)}
+                                        columns={COLUMNS}
+                                        disableSelectionOnClick
+                                        getRowId={getRowId}
+                                        pageSize={10}
+                                    />
+                                </div>
+                                <CSVLink data={filteredData.length > 0 ? filteredData : Object.values(data)}
+                                         filename={'citizensData.csv'}>
+                                    <Button>DOWNLOAD CSV FILE</Button>
+                                </CSVLink>
                             </div>
-                            <CSVLink data={Object.values(data)} filename={'citizensData.csv'}>
-                                <Button>DOWNLOAD CSV FILE</Button>
-                            </CSVLink>
-                        </div>
+                        </>
                     )}
                 </Row>
             </Row>

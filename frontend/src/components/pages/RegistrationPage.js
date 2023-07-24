@@ -41,9 +41,12 @@ const RegistrationPage = () => {
             [name]: checked,
         });
     };
-
     const handleInputChange = (event) => {
-        const {name, value} = event.target;
+        let {name, value} = event.target;
+        if (name === 'dateOfBirth') {
+            value = new Date(value).toISOString().split('T')[0];
+            console.log(value)
+        }
         updateFormData({
             [name]: value,
         });
@@ -206,7 +209,13 @@ const RegistrationPage = () => {
                                                 value={formData[field.name] || ''}
                                                 onChange={handleInputChange}
                                                 required={field.required}
+                                                isInvalid={
+                                                    field.name === 'dateOfBirth' && formData[field.name] > new Date().toISOString().split('T')[0]
+                                                }
                                             />
+                                            <Form.Control.Feedback type="invalid">
+                                                {field.name === 'dateOfBirth' && formData[field.name] > new Date().toISOString().split('T')[0] ? 'Date of birth cannot be in the future' : 'Please provide a valid ' + field.name}
+                                            </Form.Control.Feedback>
                                         </Col>
                                     </Form.Group>))}
                                 <Form.Group as={Row} controlId="covidInfected" className="mt-3">

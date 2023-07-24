@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Form, Button} from 'react-bootstrap';
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({onSearch}) => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
 
     const handleSearch = () => {
-        onSearch({ startDate, endDate, city });
+        onSearch({startDate, endDate, country});
     };
 
     return (
-        <Form>
+        <Form onSubmit={handleSearch}>
             <Form.Group>
                 <Form.Label>Date of Birth (Start Date)</Form.Label>
                 <Form.Control
@@ -29,14 +29,14 @@ const SearchForm = ({ onSearch }) => {
                 />
             </Form.Group>
             <Form.Group>
-                <Form.Label>City</Form.Label>
+                <Form.Label>Country</Form.Label>
                 <Form.Control
                     type="text"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
                 />
             </Form.Group>
-            <Button variant="primary" onClick={handleSearch} className={'btn-md'}>
+            <Button variant="primary" className={'btn-md'}>
                 <i className="fa fa-sm fa-search"/> Search
             </Button>
         </Form>
