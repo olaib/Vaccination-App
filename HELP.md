@@ -129,6 +129,17 @@ here is our journey in developing the project using chatGpt and previous knowled
 we start creating the backend using spring boot and postgresql database, then we created the frontend using react.js
 and bootstrap 5...
 
+### Our knowledge before starting the project:
+
+we have previous knowledge in java and spring boot from a course of **Internet Programming** in this semester, we learned:
+- java and spring boot, jpa, beans
+- react.js, react-router, bootstrap 5.
+- mysql database
+- we used *chatGpt* to help us in the project(that's the task of the exercise)
+<hr/>
+
+we used *stackoverflow* to help us in the project for some errors we faced, we used chatGpt too.
+
 ### Backend
 
 we start by creating the backend using spring boot and postgresql database, we created the following entities:
@@ -220,6 +231,8 @@ the errors we faced:
 - using postgresql database with spring boot.
 - errors in rendering the data table.
 - errors in the server side.
+
+
 
 ## Learn More
 
