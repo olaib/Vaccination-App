@@ -57,7 +57,7 @@ cd Backend
 npm install
 ```
 
-then open the following File Backend/settings.js and change the following:
+then open the following File src/main/resources/properties.application and change the following:
 SECRET_KEY - to your own secret key of postgresql database
 
 ## Run the project
